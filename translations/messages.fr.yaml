@@ -1,0 +1,93 @@
+cost: montant
+project: projet
+projects: projets
+company: compagnie
+companies: compagnies
+sector: secteur
+sectors: secteurs
+projecttype: type projet
+projecttypes: types projets
+to pdf: en PDF
+create new: nouvelle entité
+reload: actualiser
+id: No
+name: nom
+number: numéro
+startat: Début projet
+endat: Fermeture projet
+isactive: déjà livré
+closecontract: contrat fermeture
+yes: oui
+no: non
+and: et
+presentedat: présenté
+closed: fermé
+or: ou
+print: imprimer
+amountLessThan: montant en dessous de
+amountMoreThan: montant au-dessus de
+startBefore: débuté avant
+endBefore: fini avant
+startAfter: débuté après
+endAfter: fini après
+this field must be lower than %value%: cette date doit être inférieure au %value%
+this field must be upper than %value%: cette date doit être supérieure au %value%
+the entity has been successfully updated.: l'entité a bien été éditée
+the entity has been successfully created.: l'entité a bien été créee
+the entity has been successfully removed.: l'entité a bien été supprimée
+the password has been successfully updated.: le mot de passe a bien été modifié
+please sign in: Veuillez vous connecter
+pseudo: pseudo
+password: mot de passe
+login: se connecter
+logout: se déconnecter
+login page: page de connexion
+save: sauvegarder
+role: rôle
+user form: formulaire utilisateur
+new user creation: ajout nouveau utilisateur
+users: utilisateurs
+edit user: éditer les données
+edit password: changer de mot de passe
+user edition: édition des données utilisateurs
+password edition: édition mot de passe
+back to list: retour vers la liste
+edit: éditer
+edition: édition
+show: voir
+user index: liste des utilisateurs
+locked user index: liste des utilisateurs bloqués
+locked user: utilisateurs bloqués
+search: rechercher
+project index: liste des projets
+new project: nouveau project
+type index: liste des types de projets
+new type: nouveau type de projet
+delete: supprimer
+type edition: édition type de projet
+are you sure you want to delete this item?: êtes-vous sûr(e) de vouloir supprimer cette donnée?
+are you sure you want to delete this user?: êtes-vous sûr(e) de vouloir supprimer cet utilisateur?
+are you sure you want to unlock this user?: êtes-vous sûr(e) de vouloir débloquer cet utilisateur?
+are you sure you want to lock this user?: êtes-vous sûr(e) de vouloir bloquer cet utilisateur?
+sector index: liste des secteurs
+new sector: nouveau secteur
+company index: liste des prestataires
+new company: nouveau prestataire
+address: adresse
+phonenumber: numéro de téléphone
+connected: connecté(e)
+wrote pdf to: sauvegarder dans
+import database: importer la base de données
+cancel: annuler
+the user has been successfully unlocked.: l'utilisateur a bien été débloqué
+the user has been successfully locked.: l'utilisateur a bien été bloqué
+the user has been successfully created.: l'utilisateur a bien été creé
+the user has been successfully updated.: l'utilisateur a bien été mis à jour
+the user has been successfully removed.: l'utilisateur a bien été supprimé
+unlock user: débloquer l'utilisateur
+lock user: bloquer l'utilisateur
+locked: bloqué
+active: actif
+unlocked: débloqué
+bad credentials.: identifiants incorrects
+the presented password is invalid.: mot de passe invalid

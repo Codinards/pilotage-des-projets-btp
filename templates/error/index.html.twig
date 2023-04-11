@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ __t('ERROR') }} : {{ exception.statusCode }}
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="fw-bold">{{ __t('ERROR') }} : {{ exception.statusCode }} </h1>
+    <div class="bg-dark">
+        <hr>
+        <hr>
+    </div>
+<div class="row">    
+    <div class="col-md-8 alert-danger py-5 px-3 text-center mx-auto">
+        <h5>
+        {% if exception.statusCode == '404' %}
+            {{ __u('Not Found Page') }}
+        {% elseif exception.statusCode == '403' %}
+            {{ __u('Unauthorize Page') }}
+        {% elseif exception.statusCode == '500' %}
+            {{ __u('Server Not Found') }}
+        {% else %}
+            {{ __u('Unknown Error') }}
+        {% endif %}
+        </h5>
+   </div>
+</div>
+
+{% endblock %}

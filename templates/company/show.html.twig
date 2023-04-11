@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __t('company') }} : {{ company }}{% endblock %}
+
+{% block body %}
+<h1>{{ __t('company') }} : {{ company }}</h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<a href="{{ path('app_company_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+<a href="{{ path('app_company_edit', {'id': company.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-success">{{ __('edit') }}</a>
+<hr>
+<table class="table">
+    <tbody>
+                    <tr>
+                <th>{{ __u('Id') }}</th>
+                <td>{{ company.id }}</td>
+            </tr>
+                    <tr>
+                <th>{{ __u('Name') }}</th>
+                <td>{{ company.name }}</td>
+            </tr>
+                    <tr>
+                <th>{{ __u('Address') }}</th>
+                <td>{{ company.address }}</td>
+            </tr>
+                    <tr>
+                <th>{{ __u('PhoneNumber') }}</th>
+                <td>{{ company.phoneNumber }}</td>
+            </tr>
+                    <tr>
+                <th>{{ __u('Description') }}</th>
+                <td>{{ company.description }}</td>
+            </tr>
+            </tbody>
+</table>
+
+{{ include('company/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-{{ created == true ? 8 :  6 }} mx-auto">
+        {{ form_start(form) }}
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ __u(title) | title }}</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% if created == true or edit == true %}
+                    <div class="col-md-{{ created == true ? 6 : 12 }}" >
+                        {{ form_row(form.name) }}
+                        {{ form_row(form.pseudo) }}
+                        {{ form_row(form.role) }}
+                    </div>
+                    {% endif %}
+                    {% if created == true or edit == false %}
+                    <div class="col-md-{{ created == true ? 6 : 12 }}">
+                        {% if created == false %}
+                        {{ form_row(form.passwordEdit) }}
+                        {% else %}
+                        {{ form_row(form.password) }}
+                        <div class="text-right">
+                            <br>
+                            <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% if created == false %}
+                    <div class="col-12 text-right">
+                        <br>
+                        <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                    </div>  
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>

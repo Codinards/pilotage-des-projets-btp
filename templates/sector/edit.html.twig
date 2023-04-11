@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('Edition') | title }} {{ sector }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('Edition') | title}} {{ __u('Sector') }} | <span class="text-info">{{ sector }}</span></h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="{{ path('app_sector_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+    </div>
+    <div class="col-6 text-right">
+        {{ include('sector/_delete_form.html.twig') }}
+    </div>
+</div>
+<hr>
+{{ include('sector/_form.html.twig', {'button_label': 'save'}) }}
+
+{% endblock %}

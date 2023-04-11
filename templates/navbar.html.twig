@@ -1,0 +1,82 @@
+<nav class="navbar fixed-top bg-dark">
+    <ul class="nav">
+      <li class="nav-item">
+        <a href="{{ path('app_project_index', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link app-btn" title="">{{ __t('projects') }}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ path('app_project_type_index', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link app-btn" title="">{{ __t('types') }}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ path('app_sector_index', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link app-btn" title="">{{ __t('sectors') }}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ path('app_company_index', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link app-btn" title="">{{ __t('companies') }}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{ path('app_user_index', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link app-btn" title="">{{ __t('users') }}</a>
+      </li>
+
+      {# <li class="nav-item">
+        <a href="{{ path('app_financial_operation_index', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link">{{ __t('financialOperations') }}</a>
+      </li> #}
+    </ul>
+    <ul class="nav">
+      <li class="nav-item">
+        <button class="nav-link btn bg-light p-1" title="go back" onclick="return window.history.back()" style="max-height: 40px;"><<</button>
+      </li>
+      <li class="nav-item">
+        <button  class="nav-link btn bg-light p-1" title="reload page" onclick="return window.history.go()" style="max-height: 40px;">
+          <img src="/actualized.jpg" width="80%" alt="{{ __('reload') }}">
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn bg-light p-1" title="go forward" onclick="return window.history.forward()" style="max-height: 40px;">>></button>
+      </li>
+    </ul>
+    {% if (exception ?? null) == null %}
+    <ul class="nav align-right">
+      {% if app.request.query.get('pdf') %}
+      {# <li class="nav-item">
+        <button class="nav-link  p-1" id="save-pdf" style="max-height: 40px;">Save PDF</button>
+      </li>  #}
+      <li class="nav-item">
+        <a href="javascript:window.print()" class="nav-link btn btn-info">{{ __('Print') }} PDF</a>
+      </li>
+      {# <li class="nav-item">
+        <button class="nav-link  p-1" id="print-pdf" style="max-height: 40px;">Print PDF</button>
+      </li>  #}
+      {% else %}
+        {% if app.user() == null %}
+        <li class="nav-item">
+          <a href="{{ path('app_login', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link app-btn btn btn-primary" title="">{{ __t('login') }}</a>
+        </li>
+        {% else %}
+        <li class="nav-link">
+          <span class="nav-link text-info">
+           {{ app.user().pseudo }}
+          </span>
+        </li>
+        <li class="nav-item">
+          <a href="{{ path('app_logout', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}" class="nav-link app-btn mt-2 btn btn-warning" title="">{{ __t('logout') }}</a>
+        </li>
+        {% endif %}
+      {% endif %}
+      {# <li class="nav-item ml-2">
+      <div class="dropdown">
+        {# , "en": "English", 'es': "Español" 
+        {% set languages = {"fr": "Français"} %}
+        <button type="button" class=" dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="min-height: 36px;">
+          <img src="/assets/flags/{{ app.request.locale ?? app.request.defaultLocale }}.svg" alt="" width="15px" height="15px"/> {{ languages[app.request.locale] ?? languages[app.request.defaultLocale] }}
+        </button>
+        <div class="dropdown-menu bg-chocolate" aria-labelledby="dropdownMenuButton">
+          {% for key, language in languages %}
+          {# <a href="{{ path(locales.route, merge(locales.routeParams, {_locale: key})) }}" class="nav-link {{ key != 'fr' ? 'border-top' : '' }}"><img src="/assets/flags/{{ key }}.svg" alt="" width="15px" height="15px"/> {{ language }}</a> 
+          <a href="{{ path(app.request.attributes.get('_route'), merge(app.request.attributes.get('_route_params') ?? [], {_locale: key})) }}" class="dropdown-item app-btn {#{ key != 'fr' ? 'border-top' : '' }"><img src="/assets/flags/{{ key }}.svg" alt="" width="15px" height="15px"/> {{ language }}</a>
+        {% endfor %}
+        </div>
+      </div>
+    </li> #}
+    </ul>
+    {% endif %}
+  </nav>
+  <span id="app_locale" data="{{ app.request.locale ?? app.request.defaultLocale }}" style="display: none;"></span>

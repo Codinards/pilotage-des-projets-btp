@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('new user creation') }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('new user creation') }} </h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<a href="{{ path('app_user_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+<hr>
+{{ include('user/_form.html.twig', {created: true, edit: false, title: 'user form'}) }}
+
+{% endblock %}

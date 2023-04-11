@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __t('projectType') }} | {{ project_type }}{% endblock %}
+
+{% block body %}
+<h1>{{ __t('projectType') }} | <span class="text-info">{{ project_type }}</span></h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="{{ path('app_project_type_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+        <a href="{{ path('app_project_type_edit', {'id': project_type.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-success">{{ __('edit') }}</a>
+    </div>
+    <div class="col-6 text-right">
+        {{ include('project_type/_delete_form.html.twig') }}
+    </div>
+</div>
+
+<hr>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                    <tr>
+                        <th>{{ __u('Id') }}</th>
+                        <td>{{ project_type.id }}</td>
+                    </tr>
+                            <tr>
+                        <th>{{ __u('Name') }}</th>
+                        <td>{{ project_type.name }}</td>
+                    </tr>
+                    </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __('project index') | title }}{% endblock %}
+
+{% block body %}
+<h1>{{ __('project index') | title }}</h1>
+
+<table class="table table-bordered">
+    <thead class="bg-secondary">
+        <tr>
+                            <th>{{ __u('Id') }}</th>
+                            <th>{{ __u('Name') }}</th>
+                            <th>{{ __u('Cost') }}</th>
+                            <th>{{ __u('StartAt') }}</th>
+                            <th>{{ __u('EndAt') }}</th>
+                            <th>{{ __u('IsActive') }}</th>
+                            <th>{{ __u('CloseContract') }}</th>
+                    </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ project.name }}</td>
+                            <td>{{ project.cost | money_format }}</td>
+                            <td>{{ project.startAt ? project.startAt|date('d/m/Y') : '' }}</td>
+                            <td>{{ project.endAt ? project.endAt|date('d/m/Y') : '' }}</td>
+                            <td>{{ __(project.isActive ? 'Yes' : 'No' )}}</td>
+                            <td>{{ project.closeContract }}</td>
+                    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __t('type index') | title }}{% endblock %}
+
+{% block body %}
+<h1>{{ __t('type index') | title }}</h1>
+
+<table class="table table-bordered">
+    <thead class="bg-secondary">
+        <tr>
+                            <th>{{ __u('Id') }}</th>
+                            <th>{{ __u('Name') }}</th>
+                    </tr>
+    </thead>
+    <tbody>
+        {% for project_type in project_types %}
+        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ project_type.name }}</td>
+                    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

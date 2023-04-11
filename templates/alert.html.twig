@@ -1,0 +1,52 @@
+<alert-message messages="{{ json(__array(app.getFlashes('success'))) }}" type="success" appname="{{ appname }}"></alert-message>
+<alert-message messages="{{ json(__array(app.getFlashes('error'))) }}" type="error" appname="{{ appname }}"></alert-message>
+{% if error != null %}
+   <alert-message messages="{{ json(__array(error)) }}" type="error" appname="{{ appname }}"></alert-message> 
+{% endif %}
+
+
+<script>
+
+    class Alert extends HTMLElement{
+    top;
+    right;
+    maxWidth;
+    index = 1;
+
+        constructor(){
+            super();
+            let root = this
+            this.top = 30;
+            this.right = 40;
+            this.maxWidth = 40;
+            let messages = JSON.parse(this.getAttribute('messages'));
+            let type = this.getAttribute('type');
+            let appName = this.getAttribute('appname') || null;
+            messages.forEach(message => root.innerHTML = this.buildAlert(message, type, appName));
+        }
+
+        buildAlert(message, type, appName = null){
+            return  `<div id="c-alert-${this.index}" class="row" style="max-width:${this.maxWidth}vw;position:fixed;top:${this.top}vh;right:${this.right}vw;z-index:20;background-color:${type=='success' ? '#28a745' : 'rgb(235, 73, 73)'};padding:15px;border-radius:8px;box-shadow:1px 3px 1px">
+                ${appName ? ('<div class="col-12 text-center"><h6 style="color: rgba(' + (type == 'success' ? '214, 11, 197, 0.8' : '11, 214, 197, 0.8') + ');">' + appName +'</h6><hr/></div>') : ''}
+                <div class="col-12 text-center pt-2 pb-2 text-white text-bold">${message}</div>
+                <div class="col-12 text-right"><button onClick="document.querySelector('#c-alert-${this.index}').style.display='none';" class="pl-3 pr-3 btn btn-primary">oK</button></div>
+            </div>`;
+        }
+    }
+
+    try{
+        customElements.define('alert-message', Alert);
+    }catch(e){
+        if(e instanceof DOMException){
+            console.error('DOMException : ' + e.message);
+        }else{
+            throw e;
+        }
+    }
+</script>
+
+<style>
+    p{
+        color: #28a745;
+    }
+</style>

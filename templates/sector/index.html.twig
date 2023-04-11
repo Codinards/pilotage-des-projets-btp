@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('sector index') | title }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('sector index') | title }}</h1>
+
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+{% include "alert.html.twig" %}
+<div class="row">
+    <div class="col text-right">
+        <a href="{{ path('app_sector_new', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-primary">{{ __('new sector') }}</a>
+        <a href="{{ path('app_sector_index', {_locale: app.request.locale ?? app.request.defaultLocale, pdf: true}) }}" class="btn btn-success" style="min-width: 100px;">{{ __u('to PDF')  }}</a>
+    </div>
+</div>
+<hr>
+<table class="table">
+    <thead class="bg-secondary">
+        <tr>
+                            <th>{{ __u('Id') }}</th>
+                            <th>{{ __u('Name') }}</th>
+                            <th>{{ __u('Description') }}</th>
+                        <th>{{ __('actions') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sector in sectors %}
+        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ sector.name }}</td>
+                            <td>{{ sector.description }}</td>
+                        <td>
+                {# <a href="{{ path('app_sector_show', {'id': sector.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('show') }}</a> #}
+                <a href="{{ path('app_sector_edit', {'id': sector.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-success">{{ __('edit') }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

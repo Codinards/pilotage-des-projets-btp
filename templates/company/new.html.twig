@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('Creation') }} {{ __u('Company') }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('Creation') }} {{ __u('Company') }} </h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<a href="{{ path('app_company_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+<hr>
+{{ include('company/_form.html.twig') }}
+
+{% endblock %}

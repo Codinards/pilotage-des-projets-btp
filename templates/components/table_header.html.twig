@@ -1,0 +1,22 @@
+    <th class="text-white" style="min-width: max-content;">
+        <button title="Faire un TRI {{ direction == 'ASC' ? 'DECROISSANT' : 'CROISSANT' }}" class="text-white" style="border: none;background-color: inherit;" type="submit" data-model="checked"  data-action="live#action" data-action-name="setHeaderName(name={{ name }})">
+        
+        {% if visible == true %}
+            {{ this.label }}<i class="fa fa-arrow-{{ direction == 'ASC' ? 'up' : 'down' }}"></i>
+        {% else %}
+        {{ this.label }}
+        {% endif %}
+        </button>
+    </th>
+
+    {# <span class="my-dropdown">
+        <i class="fa fa-filter dropbtn" id="postDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+        <span class="dropdown-menu" aria-labelledby="postDropdownButton">
+            {% for item in [0, 1] %}
+                <span class="dropdown-item">
+                    <label for="status-{{ item }}">{{ item == 1 ? 'true' : 'false' }}<input  type="radio"  id="status-{{ item }}"></label>
+                </span>
+                
+            {% endfor %}
+        </span>
+    </span> #}

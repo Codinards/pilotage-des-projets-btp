@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __t('project') }} | {{ project }}{% endblock %}
+
+{% block body %}
+<h1>{{ __t('project') }} | <span class="text-info">{{ project }}</span></h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="{{ path('app_project_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+        <a href="{{ path('app_project_edit', {'id': project.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-success">{{ __('edit') | title }}</a>
+    </div>
+    <div class="col-6 text-right">
+        {{ include('project/_delete_form.html.twig') }}
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <table class="table table-striped">
+            <tbody>
+    
+                    <tr>
+                        <th>{{ __u('Name') }}</th>
+                        <td>{{ project.name }}</td>
+                    </tr>
+                            <tr>
+                        <th>{{ __u('Cost') }}</th>
+                        <td>{{ project.cost | money_format }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ __u('type') }}</th>
+                        <td>{{ project.type }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ __u('sector') }}</th>
+                        <td>{{ project.sector }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ __u('company') }}</th>
+                        <td>{{ project.company }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ __u('Présenté le') }}</th>
+                        <td>{{ project.startAt ? project.startAt|date('d/m/Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ __u('StartAt') }}</th>
+                        <td>{{ project.startAt ? project.startAt|date('d/m/Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ __u('EndAt') }}</th>
+                        <td>{{ project.endAt ? project.endAt|date('d/m/Y') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>{{ __u('IsActive') }}</th>
+                        <td>{{ __u(project.isActive ? 'Yes' : 'No') }}</td>
+                    </tr>
+                    {# <tr>
+                        <th>{{ __u('CloseContract') }}</th>
+                        <td>{{ project.closeContract }}</td>
+                    </tr> #}
+                </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

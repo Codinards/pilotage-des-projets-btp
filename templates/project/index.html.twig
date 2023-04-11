@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __('project index') | title }}{% endblock %}
+{% block stylesheets %}
+    <style>
+        table tr.clickable:hover{
+            background-color: #a8a8a8;
+        }
+    </style>
+{% endblock stylesheets %}
+
+{% block body %}
+<h1>{{ __('project index') | title }}</h1>
+
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+{% include "alert.html.twig" %}
+<div class="row">
+    <div class="col text-right">
+        <a href="{{ path('app_project_new', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-primary">{{ __u('new project') }}</a>
+        <a href="{{ path('app_project_index', {_locale: app.request.locale ?? app.request.defaultLocale, pdf: true}) }}" class="btn btn-info" style="min-width: 100px;">{{ __u('to PDF')  }}</a>
+        {% if app.user().isAdmin() %}
+        <form method="post" style="display: inline-block;" action="{{ path('app_import_database', {_locale:  app.request.locale ?? app.request.defaultLocale}) }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('import_database') }}">
+            <button type="submit" class="btn btn-danger">{{ __t('import database') }}</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+<hr>
+{{ component('project') }}
+    {# {% if pdf == false %}
+        <div class="col-md-4" style="font-size: 0.8rem;">
+            {{ form_start(form) }}
+            <div class="card">
+                <div class="card-header">
+                    <button type="submit" class="btn btn-primary">{{ __u('search') }}</button>
+                </div>
+                <div class="card-body">
+                    
+                    <div class="row mt-1">
+                        <div class="col-9">{{ form_row(form.type) }}</div>
+                       
+                    </div>
+                    <hr  class="m-1">
+                    <div class="row mt-1">
+                        <div class="col-9">{{ form_row(form.sector) }}</div>
+                        <div class="col-3">{{ form_row(form.sectorOr) }}</div>
+                    </div>
+                    <hr  class="m-1">
+                    <div class="row mt-1">
+                        <div class="col-9">{{ form_row(form.company) }}</div>
+                        <div class="col-3">{{ form_row(form.companyOr) }}</div>
+                    </div>
+                    <hr  class="m-1">
+                    <div class="row mt-1">
+                        <div class="col-9">{{ form_row(form.amountLessThan) }}</div>
+                        <div class="col-3">{{ form_row(form.amountLessThanOr) }}</div>
+                    </div>
+                    <hr  class="m-1">
+                    <div class="row mt-1">
+                        <div class="col-9">{{ form_row(form.amountMoreThan) }}</div>
+                        <div class="col-3">{{ form_row(form.amountMoreThanOr) }}</div>
+                    </div>
+                    <hr  class="m-1">
+                    <div class="row mt-1">
+                        <div class="col-9">{{ form_row(form.startAfter) }}</div>
+                        <div class="col-3">{{ form_row(form.startAfterOr) }}</div>
+                    </div>
+                    <hr  class="m-1">
+                    <div class="row mt-1">
+                        <div class="col-9">{{ form_row(form.endBefore) }}</div>
+                        <div class="col-3">{{ form_row(form.endBeforeOr) }}</div>
+                    </div>
+                    
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    {% endif %} #}
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script defer>
+        const clickables = document.querySelectorAll('.clickable');
+
+        clickables.forEach(elt => {
+            elt.addEventListener('click', (e) => {
+                window.location = elt.getAttribute('data-url');
+            })
+        })
+        
+    </script>
+{% endblock  %}

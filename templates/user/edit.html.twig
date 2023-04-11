@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('edition') | title }} {{ __u('password') | title }}|  {{ user.name }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('edition') | title }} {{ __u('password') | title }} | <span class="text-info">{{ user.name }}</span></h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-{{ app.user().id == user.id ? 6 : 4 }}">
+        <a href="{{ path('app_user_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+    </div>
+    <div class="col-{{ app.user().id == user.id ? 6 : 4 }} {{ app.user().id == user.id ? 'text-right' : 'text-center' }}">
+        {% if user.isLocked %}
+        <a href="{{ path('app_user_delete', {_locale: app.request.locale ?? app.request.defaultLocale, id: user.id}) }}" class="btn btn-danger">{{ __('delete') }}</a>
+        {% else %}
+            {% if password == true %}
+            <a href="{{ path('app_user_edit', {_locale: app.request.locale ?? app.request.defaultLocale, id: user.id}) }}" class="btn btn-success">{{ __('edit user') }}</a>
+            {% else %}
+            <a href="{{ path('app_user_edit_password', {_locale: app.request.locale ?? app.request.defaultLocale, id: user.id}) }}" class="btn btn-success">{{ __('edit password') }}</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% if app.user().id != user.id  %}
+    <div class="col-4 text-right">
+        {{ include('user/_lock_form.html.twig') }}
+    </div>        
+    {% endif %}
+
+</div>
+
+<hr>
+{{ include('user/_form.html.twig', {'button_label': 'Save', created: false, edit: password == true ? false: true, title: (password == true ? "password edition" : "user edition")}) }}
+
+{% endblock %}

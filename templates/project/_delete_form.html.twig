@@ -1,0 +1,16 @@
+<div class="confirm-block">
+    <span class="btn btn-danger" id="confirm-block-btn">{{ __u("Delete") }}</span>
+    <div id="confirm-block-main" style="display: none;">
+        <div class="row" style="max-width:40vw;position:fixed;top:40vh;right:40vw;z-index:20;background-color:rgb(50, 150, 100);padding:15px;border-radius:8px;box-shadow:1px 3px 1px">
+            <div class="col-12 text-center text-white">{{  __u('Are you sure you want to delete this item?') }}</div>
+            <div class="col-12 pt-2" style="display: flex;align-items:center;justify-content:space-around;">
+                <span class="btn btn-danger" id="confirm-block-cancel" data-target="confirm-block-btn">{{ __u("Cancel") }}</span>
+                <span style="width: 10px;"></span>
+                <form method="post" action="{{ path('app_project_delete', {'id': project.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
+                    <button class="btn btn-primary">{{ __u('Yes') }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('Edit') }} {{ project }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('Edition') }} {{ __t('Project') }} | <span class="text-info">{{ project }}</span></h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="{{ path('app_project_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+    </div>
+    <div class="col-6 text-right">
+        {{ include('project/_delete_form.html.twig') }}
+    </div>
+</div>
+
+<hr>
+<div class="container-fluid">
+    {{ form_start(form) }}
+<div class="row">
+    <div class="col-md-4">
+        {{ form_row(form.name) }}
+        {{ form_row(form.cost) }}
+        {{ form_row(form.startAt) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_row(form.type) }}
+        {{ form_row(form.company) }}
+        {{ form_row(form.sector) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_row(form.presentedAt) }}
+        {{ form_row(form.endAt) }}
+        <hr>
+        <div class="form-group text-right">
+            <button class="btn btn-primary">{{ __u(button_label|default('Save')) }}</button>
+        </div>
+    </div>
+    <hr/>
+    <div class="col-12">
+
+    </div>
+</div>
+{{ form_end(form) }}
+</div>
+{% endblock %}

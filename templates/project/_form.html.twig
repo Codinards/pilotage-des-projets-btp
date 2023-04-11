@@ -1,0 +1,20 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.name) }}
+        {{ form_row(form.cost) }}
+        {{ form_row(form.startAt) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.type) }}
+        {{ form_row(form.company) }}
+        {{ form_row(form.sector) }}
+    </div>
+    <hr>
+    <div class="col-12">
+        <div class="form-group text-right">
+            <button class="btn btn-primary">{{ __u(button_label|default('Save')) }}</button>
+        </div>
+    </div>
+</div>
+{{ form_end(form) }}

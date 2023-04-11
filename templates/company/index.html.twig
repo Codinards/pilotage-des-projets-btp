@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('Company index') | title }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('Company index') | title }}</h1>
+
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+{% include "alert.html.twig" %}
+<div class="row">
+    <div class="col text-right">
+        <a href="{{ path('app_company_new', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-primary">{{ __u('new company') }}</a>
+        <a href="{{ path('app_company_index', {_locale: app.request.locale ?? app.request.defaultLocale, pdf: true}) }}" class="btn btn-success" style="min-width: 100px;">{{ __u('to PDF') }}</a>
+    </div>
+</div>
+<hr>
+<table class="table">
+    <thead class="bg-secondary">
+        <tr>
+                            <th>{{ __u('Id') }}</th>
+                            <th>{{ __u('Name') }}</th>
+                            <th>{{ __u('Address') }}</th>
+                            <th>{{ __u('PhoneNumber') }}</th>
+                            <th>{{ __u('Description') }}</th>
+                        <th>{{ __('actions') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for company in companies %}
+        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ company.name }}</td>
+                            <td>{{ company.address }}</td>
+                            <td>{{ company.phoneNumber ? company.phoneNumber  | phone_number : ''}}</td>
+                            <td>{{ company.description }}</td>
+                        <td>
+                {# <a href="{{ path('app_company_show', {'id': company.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('show') }}</a> #}
+                <a href="{{ path('app_company_edit', {'id': company.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-success">{{ __('edit') }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

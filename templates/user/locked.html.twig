@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __('locked user index') | title }}{% endblock %}
+
+{% block body %}
+<h1>{{ __('locked user index') | title }}</h1>
+
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+{% include "alert.html.twig" %}
+<div class="row">
+    <div class="col-6">
+        <a href="{{ path('app_user_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info" style="min-width: 100px;">{{ __u('back to list')  }}</a>
+    </div>
+    <div class="col-6 text-right">
+        <a href="{{ path('app_user_index_lock', {_locale: app.request.locale ?? app.request.defaultLocale, pdf: true}) }}" class="btn btn-success" style="min-width: 100px;">{{ __u('to PDF')  }}</a>
+    </div>
+</div>
+<hr>
+<table class="table">
+    <thead class="bg-secondary">
+        <tr>
+            <th>{{ __u('Id') }}</th>
+            <th>{{ __u('Pseudo') }}</th>
+            <th>{{ __u('Role') }}</th>
+            <th>{{ __u('Name') }}</th>
+            <th>{{ __u('status') }}</th>
+            <th>{{ __('actions') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr class="{{ user.isLocked ? "bg-warning" : '' }}" title="{{ __u(user.isLocked ? "locked" : "active") }}">
+                            <td>{{ loop.index }}</td>
+                            <td>{{ user.pseudo }}</td>
+                            <td>{{ user.role.name }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ __u(user.isLocked ? "locked" : "active") }}</td>
+                        <td>
+                {# <a href="{{ path('app_user_show', {'id': user.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('show') }}</a> #}
+                <a href="{{ path('app_user_edit', {'id': user.id, _locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-success">{{ __('edit') }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __('locked user index') | title }}{% endblock %}
+
+{% block body %}
+<h1>{{ __('locked user index') | title }}</h1>
+
+<table class="table table-bordered">
+    <thead class="bg-secondary">
+        <tr>
+                            <th>{{ __u('Id') }}</th>
+                            <th>{{ __u('Pseudo') }}</th>
+                            <th>{{ __u('Role') }}</th>
+                            <th>{{ __u('Name') }}</th>
+                    </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ user.pseudo }}</td>
+            <td>{{ user.role.name }}</td>
+            <td>{{ user.name }}</td>
+                    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

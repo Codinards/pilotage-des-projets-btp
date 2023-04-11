@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ __u('Suppression Utilisateur') | title }}|  {{ user.name }}{% endblock %}
+
+{% block body %}
+<h1>{{ __u('Suppression Utilisateur') | title }} | <span class="text-info">{{ user.name }}</span></h1>
+<div class="bg-dark">
+    <hr>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-6">
+        <a href="{{ path('app_user_index', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-info">{{ __('back to list') }}</a>
+    </div>   
+    <div class="col-6 text-right">
+        <a href="{{ path('app_user_index_lock', {_locale: app.request.locale ?? app.request.defaultLocale}) }}" class="btn btn-danger">{{ __u('locked user')  }}</a>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <h2>Formulaire de Suppression</h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <table class="table">
+                            <tbody>
+                                    <tr>
+                                        <th>{{ __u('name') }}</th>
+                                        <td>{{ user.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>{{ __u('Pseudo') }}</th>
+                                        <td>{{ user.pseudo }}</td>
+                                    </tr>
+                                            <tr>
+                                        <th>{{ __u('Role') }}</th>
+                                        <td>{{ user.role }}</td>
+                                    </tr>
+                                    </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="text-right">
+                    {{ include('user/_delete_form.html.twig', {'button_label': 'delete'}) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
